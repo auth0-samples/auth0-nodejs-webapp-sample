@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  script(src="http://cdn.auth0.com/w2/auth0-6.7.js")
+
+  h1= title
+  p Welcome to #{title}
+  br
+  button(onclick="signinGoogle()") Login Google
+
+  script.
+    var auth0 = new Auth0({
+        domain:      '#{env.AUTH0_DOMAIN}',
+        clientID:    '#{env.AUTH0_CLIENT_ID}',
+        callbackURL: '#{env.AUTH0_CALLBACK_URL}',
+      });
+
+    function signinGoogle() {
+      auth0.signin({
+        connection: 'google-oauth2',
+      });
+    }
