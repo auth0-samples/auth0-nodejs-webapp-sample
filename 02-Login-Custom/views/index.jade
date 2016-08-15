@@ -7,6 +7,15 @@ block content
   p Welcome to #{title}
   br
   button(onclick="signinGoogle()") Login Google
+  br
+  br
+  label Username
+  input(id='username')
+  br
+  label Password
+  input(id='password', type='password')
+  br
+  button(onclick="signinDb()") Login Db
 
   script.
     var auth0 = new Auth0({
@@ -18,5 +27,13 @@ block content
     function signinGoogle() {
       auth0.signin({
         connection: 'google-oauth2',
+      });
+    }
+
+    function signinDb() {
+      auth0.signin({
+        connection: 'Username-Password-Authentication',
+        username: document.getElementById('username').value,
+        password: document.getElementById('password').value,
       });
     }
