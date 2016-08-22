@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  script(src="https://cdn.auth0.com/js/lock/10.0/lock.min.js")
+
+  script.
+    localStorage.setItem('idToken', '#{user.extraParams.id_token}')
+    localStorage.setItem('userId', '#{user.profile.id}')
+    window.location.href = '/user/';
