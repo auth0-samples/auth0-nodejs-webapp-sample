@@ -7,7 +7,7 @@ var router = express.Router();
 router.get('/', ensureLoggedIn, function(req, res, next) {
   res.render('user', {
     user: req.user ,
-    userProfile: JSON.stringify(req.user, null,'  ')
+    userProfile: JSON.stringify(req.user, null, '  ')
   });
 });
 
