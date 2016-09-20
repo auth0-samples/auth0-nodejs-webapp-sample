@@ -1,12 +1,10 @@
 extends layout
 
 block content
-  script(src="http://cdn.auth0.com/w2/auth0-6.7.js")
-
   h1= title
   p Welcome to #{title}
   br
-  button(onclick="signinGoogle()") Login Google
+  button(onclick="signinGoogle()") Log In with Google
   br
   br
   label Username
@@ -15,7 +13,7 @@ block content
   label Password
   input(id='password', type='password')
   br
-  button(onclick="signinDb()") Login Db
+  button(onclick="signinDb()") Log In
 
   script.
     var auth0 = new Auth0({

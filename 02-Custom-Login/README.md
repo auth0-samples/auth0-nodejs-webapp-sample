@@ -1,6 +1,4 @@
-# 00-Starter-Seed
-
-**This is an empty starter project that is used for following along with the [documentation](https://auth0.com/docs/quickstart/webapp/nodejs). It contains a base Express project but does not have any authentication built in. See the other steps in this sample repo for completed projects.**
+# 02-Custom-Login
 
 ## Running the Sample
 

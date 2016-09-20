@@ -13,7 +13,7 @@ var env = {
 router.get('/', ensureLoggedIn, function(req, res, next) {
   res.render('user', {
     user: req.user,
-    env: env,
+    env: env
   });
 });
 

@@ -1,39 +1,19 @@
 extends layout
 
-block content
-  script(src="http://cdn.auth0.com/w2/auth0-6.7.js")
-
+block content  
   h1= title
   p Welcome to #{title}
   br
-  button(onclick="signinGoogle()") Login Google
-  br
-  br
-  label Username
-  input(id='username')
-  br
-  label Password
-  input(id='password', type='password')
-  br
-  button(onclick="signinDb()") Login Db
+  button(onclick="signin()") Login
 
   script.
-    var auth0 = new Auth0({
-        domain:      '#{env.AUTH0_DOMAIN}',
-        clientID:    '#{env.AUTH0_CLIENT_ID}',
-        callbackURL: '#{env.AUTH0_CALLBACK_URL}',
-      });
-
-    function signinGoogle() {
-      auth0.login({
-        connection: 'google-oauth2',
-      });
-    }
-
-    function signinDb() {
-      auth0.login({
-        connection: 'Username-Password-Authentication',
-        username: document.getElementById('username').value,
-        password: document.getElementById('password').value,
-      });
+    var lock = new Auth0Lock('#{env.AUTH0_CLIENT_ID}', '#{env.AUTH0_DOMAIN}', { auth: {
+          redirectUrl: '#{env.AUTH0_CALLBACK_URL}'
+        , responseType: 'code'
+        , params: {
+          scope: 'openid name email picture'
+        }
+      }});
+    function signin() {
+      lock.show();
     }
