@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  img(src="#{user.picture}")
+  img(src=user.picture)
   h2 Welcome #{user.nickname}!
   h5 If you’ve enabled multifactor in your Auth0 dashboard, you will have needed to go through multiple authentication steps to get here. If not, ensure that
     a(href="https://manage.auth0.com/#/guardian") multifactor authentication with Guardian
