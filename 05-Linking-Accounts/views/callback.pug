@@ -1,8 +1,0 @@
-extends layout
-
-block content
-
-  script.
-    localStorage.setItem('idToken', '#{user.extraParams.id_token}')
-    localStorage.setItem('userId', '#{user.profile.id}')
-    window.location.href = '/user/';
