@@ -9,6 +9,6 @@ block content
       domain: '#{env.AUTH0_DOMAIN}',
       redirectUri: '#{env.AUTH0_CALLBACK_URL}',
       responseType: 'code',
-      scope: 'openid'
+      scope: 'openid profile'
     });
     webAuth.authorize();

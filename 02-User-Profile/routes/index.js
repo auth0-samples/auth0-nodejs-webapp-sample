@@ -13,10 +13,9 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express', env: env });
 });
 
-router.get('/login',
-  function(req, res){
+router.get('/login', function(req, res){
     res.render('login', { env: env });
-  });
+});
 
 router.get('/logout', function(req, res){
   req.logout();
@@ -30,6 +29,5 @@ router.get('/callback',
   function(req, res) {
     res.redirect(req.session.returnTo || '/user');
   });
-
 
 module.exports = router;
