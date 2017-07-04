@@ -24,8 +24,10 @@ var strategy = new Auth0Strategy({
     // accessToken is the token to call Auth0 API (not needed in the most cases)
     // extraParams.id_token has the JSON Web Token
     // profile has all the information from the user
-
-    return done(null, profile);
+    return done(null, {
+      profile: profile,
+      extraParams: extraParams
+    });
   });
 
 passport.use(strategy);
@@ -59,6 +61,15 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(function(req,res,next){
+  res.locals.loggedIn = false;
+  if ( req.session.passport && typeof req.session.passport.user != "undefined" ) {
+    res.locals.loggedIn = true;
+  }
+  console.log(req.session.passport);
+  next();
+});
 
 app.use('/', routes);
 app.use('/user', user);
