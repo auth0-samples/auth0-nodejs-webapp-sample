@@ -1,19 +1,19 @@
-var express = require('express');
-var passport = require('passport');
-var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn();
-var router = express.Router();
-var rp = require('request-promise');
+const express = require('express');
+const passport = require('passport');
+const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn();
+const router = express.Router();
+const rp = require('request-promise');
 
-var env = {
+const env = {
   AUTH0_DOMAIN: process.env.AUTH0_DOMAIN
 };
 
 /* GET user profile. */
 router.get('/', ensureLoggedIn, function(req, res, next) {
-  var idToken = req.user.extraParams.id_token;
-  var userId = req.user.profile._json.sub;
+  const idToken = req.user.extraParams.id_token;
+  const userId = req.user.profile._json.sub;
 
-  var options = {
+  const options = {
     method: 'GET',
     uri: 'https://' + env.AUTH0_DOMAIN + '/api/v2/users/' + userId,
     auth: {
@@ -37,13 +37,13 @@ router.get('/', ensureLoggedIn, function(req, res, next) {
 });
 
 router.post('/update', ensureLoggedIn, function(req, res, next) {
-  var idToken = req.user.extraParams.id_token;
-  var userId = req.user.profile._json.sub;
-  var country = req.body.country;
+  const idToken = req.user.extraParams.id_token;
+  const userId = req.user.profile._json.sub;
+  const country = req.body.country;
 
-  var userData = { user_metadata: { country } };
+  const userData = { user_metadata: { country } };
 
-  var options = {
+  const options = {
     method: 'PATCH',
     uri: 'https://' + env.AUTH0_DOMAIN + '/api/v2/users/' + userId,
     body: userData,
