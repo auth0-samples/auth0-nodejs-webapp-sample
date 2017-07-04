@@ -11,56 +11,55 @@ var env = {
 /* GET user profile. */
 router.get('/', ensureLoggedIn, function(req, res, next) {
   var idToken = req.user.extraParams.id_token;
-  var userId = req.user.profile._json.sub
+  var userId = req.user.profile._json.sub;
 
   var options = {
     method: 'GET',
     uri: 'https://' + env.AUTH0_DOMAIN + '/api/v2/users/' + userId,
     auth: {
-      'bearer': idToken
+      bearer: idToken
     },
     json: true // Automatically parses the JSON string in the response
   };
 
   rp(options)
-    .then(function (profile) {
-      req.session.passport.user.fullProfile = profile
+    .then(function(profile) {
+      req.session.passport.user.fullProfile = profile;
       res.render('user', {
         user: req.user.fullProfile,
         userProfile: JSON.stringify(req.user.fullProfile, null, 2)
       });
     })
-    .catch(function (err) {
+    .catch(function(err) {
       console.log(err);
       res.redirect('/');
     });
 });
 
-
 router.post('/update', ensureLoggedIn, function(req, res, next) {
   var idToken = req.user.extraParams.id_token;
-  var userId = req.user.profile._json.sub
-  var country = req.body.country
+  var userId = req.user.profile._json.sub;
+  var country = req.body.country;
 
-  var userData = { "user_metadata": { "country": country } }
+  var userData = { user_metadata: { country } };
 
   var options = {
     method: 'PATCH',
     uri: 'https://' + env.AUTH0_DOMAIN + '/api/v2/users/' + userId,
     body: userData,
     auth: {
-      'bearer': idToken
+      bearer: idToken
     },
     json: true // Automatically parses the JSON string in the response
   };
 
   rp(options)
-    .then(function (profile) {
-      req.session.passport.user.fullProfile = profile
+    .then(function(profile) {
+      req.session.passport.user.fullProfile = profile;
       res.redirect('/user');
     })
-    .catch(function (err) {
-      console.log("Patch Failed:" + err);
+    .catch(function(err) {
+      console.log('Patch Failed:' + err);
       res.redirect('/user');
     });
 });
