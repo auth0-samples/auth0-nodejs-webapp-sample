@@ -14,20 +14,9 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
-router.get(
-  '/login',
-  passport.authenticate('auth0', {
-    clientID: env.AUTH0_CLIENT_ID,
-    domain: env.AUTH0_DOMAIN,
-    redirectUri: env.AUTH0_CALLBACK_URL,
-    audience: `https://${env.AUTH0_DOMAIN}/userinfo`,
-    responseType: 'code',
-    scope: 'openid profile'
-  }),
-  function(req, res) {
-    res.redirect('/');
-  }
-);
+router.get('/login', function(req, res){
+  res.render('login', { env: env });
+});
 
 router.get('/logout', function(req, res) {
   req.logout();
