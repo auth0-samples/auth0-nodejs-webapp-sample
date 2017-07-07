@@ -20,8 +20,6 @@
     "passport": "^0.3.0",
     "passport-auth0": "^0.6.0",
     "pug": "~2.0.0-beta11",
-    "request": "^2.81.0",
-    "request-promise": "^4.2.1",
     "serve-favicon": "^2.4.0"
   }
 }

@@ -6,12 +6,5 @@ block content
     .w3-card-4.w3-center(style="padding: 15px;")
       img(src=user.picture)
       p Welcome #{user.nickname}
-      form(method='POST' action='/user/update')
-        div.form-group
-          label(for='country') Country: 
-          input.form-control(type='text' id='country' placeholder=user.country name='country')
-        button.w3-button.w3-black.w3-round-large(type='submit', style="margin: 10px;") Update User Metadata
-      br
-    .w3-card-4(style="padding: 15px;")
-      h3 User Profile
+      h2 User Profile
       pre #{userProfile}
