@@ -3,6 +3,15 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-    script(src="https://cdn.auth0.com/js/lock/10.16/lock.min.js")
+    link(rel='stylesheet', href='https://www.w3schools.com/w3css/4/w3.css')
+    script(src="https://cdn.auth0.com/js/lock/10.18.0/lock.min.js")
   body
+    nav.w3-bar.w3-border.w3-light-grey( role="navigation" )
+      .w3-bar-item.w3-text-grey Auth0 - NodeJS
+      a( href="/").w3-bar-item.w3-button Home
+      if loggedIn
+        a( href="/user" ).w3-bar-item.w3-button Profile
+        a( href="/logout" ).w3-bar-item.w3-button Logout
+      else
+        a( href="/login" ).w3-bar-item.w3-button Login
     block content
