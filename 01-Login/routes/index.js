@@ -30,14 +30,23 @@ router.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
-router.get(
-  '/callback',
+router.get('/callback',
   passport.authenticate('auth0', {
-    failureRedirect: '/'
+    failureRedirect: '/failure'
   }),
   function(req, res) {
     res.redirect(req.session.returnTo || '/user');
   }
 );
+
+router.get('/failure', function(req, res) {
+  var error = req.flash("error");
+  var error_description = req.flash("error_description");
+  req.logout();
+  res.render('failure', {
+    error: error[0],
+    error_description: error_description[0],
+  });
+});
 
 module.exports = router;
