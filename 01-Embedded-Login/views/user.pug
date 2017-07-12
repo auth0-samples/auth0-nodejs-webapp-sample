@@ -1,7 +1,8 @@
 extends layout
 
 block content
-  img(src=user.picture)
-  h2 Welcome #{user.nickname}!
   br
-  a(href='/logout') Logout
+  .w3-container
+    .w3-card-4.w3-center(style="padding: 15px;")
+      img(src=user.picture)
+      p Welcome #{user.nickname}
