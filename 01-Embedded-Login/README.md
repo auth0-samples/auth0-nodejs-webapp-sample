@@ -15,7 +15,16 @@ Rename `.env.example` to `.env` and replace the values for `AUTH0_CLIENT_ID`, `A
 cp .env.example .env
 ```
 
-Run the app.
+## Enable Cross Origin Authentication
+
+In order to be able to log-in with user and password you need to enable the [Cross Origin Authentication](https://auth0.com/docs/cross-origin-authentication). This is not required for Social or Enterprise connections.
+
+Make sure you edit the contents of the `callback-cross-auth.html` file to match your Client Id, Domain and Callback settings. This page will only be used when third-party cookies are disabled in the client browser, and *needs to be served over HTTPS*. Note that when third-party cookies are disabled, there are some browsers where the authentication flow will NOT work. 
+
+
+## Run the Application
+
+Run the application by executing the command below.
 
 ```bash
 npm start

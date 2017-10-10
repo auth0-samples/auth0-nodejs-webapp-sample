@@ -6,10 +6,11 @@ block content
   script.
     var lock = new Auth0Lock('#{env.AUTH0_CLIENT_ID}', '#{env.AUTH0_DOMAIN}',
       {
+        oidcConformant: true,
         auth: {
-          oidcConformant: true,
           redirectUrl: '#{env.AUTH0_CALLBACK_URL}',
           params: {
+            responseType: 'code',
             audience: 'https://#{env.AUTH0_DOMAIN}/userinfo',
             scope: 'openid profile'
           }
