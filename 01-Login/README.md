@@ -23,6 +23,14 @@ npm start
 
 The app will be served at `localhost:3000`.
 
+## Running the Sample With Docker
+
+In order to run the example with docker you need to have `docker` installed.
+
+You also need to set the environment variables as explained [previously](#running-the-sample).
+
+Execute in command line `sh exec.sh` to run the Docker in Linux, or `.\exec.ps1` to run the Docker in Windows.
+
 ## What is Auth0?
 
 Auth0 helps you to:
@@ -45,7 +53,7 @@ If you have found a bug or if you have a feature request, please report them at 
 
 ## Author
 
-[Auth0](auth0.com)
+[Auth0](https://auth0.com)
 
 ## License
 
