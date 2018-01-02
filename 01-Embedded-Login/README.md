@@ -17,10 +17,9 @@ cp .env.example .env
 
 ## Enable Cross Origin Authentication
 
-In order to be able to log-in with user and password you need to enable the [Cross Origin Authentication](https://auth0.com/docs/cross-origin-authentication). This is not required for Social or Enterprise connections.
+In order to be able to log-in with user and password you need to make sure you take into account the details explained in the [Cross Origin Authentication documentation](https://auth0.com/docs/cross-origin-authentication). 
 
-Make sure you edit the contents of the `callback-cross-auth.html` file to match your Client Id, Domain and Callback settings. This page will only be used when third-party cookies are disabled in the client browser, and *needs to be served over HTTPS*. Note that when third-party cookies are disabled, there are some browsers where the authentication flow will NOT work. 
-
+Make sure you edit the contents of the `callback-cross-auth.html` file to match your Client Id, Domain and Callback settings.
 
 ## Run the Application
 
