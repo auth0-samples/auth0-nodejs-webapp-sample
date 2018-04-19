@@ -1,5 +1,7 @@
 const express = require('express');
 const passport = require('passport');
+const { URL } = require('url');
+const util = require('util');
 const router = express.Router();
 
 const env = {
@@ -27,7 +29,14 @@ router.get('/login', passport.authenticate('auth0', {
 
 router.get('/logout', function(req, res) {
   req.logout();
-  res.redirect('/');
+  const url = new URL(env.AUTH0_CALLBACK_URL);
+  const logout_url = util.format(
+      'https://%s/v2/logout?client_id=%s&returnTo=%s',
+      env.AUTH0_DOMAIN,
+      env.AUTH0_CLIENT_ID,
+      url.origin
+  );
+  res.redirect(logout_url);
 });
 
 router.get( '/callback',
