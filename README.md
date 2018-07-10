@@ -1,5 +1,7 @@
 # Auth0 Node Web App Samples
 
+[![CircleCI](https://circleci.com/gh/auth0-samples/auth0-nodejs-webapp-sample.svg?style=svg)](https://circleci.com/gh/auth0-samples/auth0-nodejs-webapp-sample)
+
 These samples demonstrate how to add authentication to a Node.js application with Auth0. Each folder contains a distinct application so that various Auth0 features can be viewed in isolation.
 
 ## Embedded Integration Samples
