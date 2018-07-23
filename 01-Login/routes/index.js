@@ -30,7 +30,7 @@ router.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
-router.get('/callback',
+router.get( '/callback',
   passport.authenticate('auth0', {
     failureRedirect: '/failure'
   }),
