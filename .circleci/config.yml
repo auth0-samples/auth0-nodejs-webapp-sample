@@ -58,12 +58,6 @@ jobs:
       - AUTH0_CFG: 01-Login/.env
       - SAMPLE_PATH: 01-Login
     <<: *defaults
-  02-user-profile:
-      machine: true
-      environment:
-        - AUTH0_CFG: 02-User-Profile/.env
-        - SAMPLE_PATH: 02-User-Profile
-      <<: *defaults
 
 workflows:
   version: 2
@@ -72,10 +66,6 @@ workflows:
       - checkout:
           context: Quickstart Web App Test
       - 01-login:
-          context: Quickstart Web App Test
-          requires:
-            - checkout
-      - 02-user-profile:
           context: Quickstart Web App Test
           requires:
             - checkout

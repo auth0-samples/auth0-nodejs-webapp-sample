@@ -8,10 +8,10 @@ html
   body
     nav.w3-bar.w3-border.w3-light-grey( role="navigation" )
       .w3-bar-item.w3-text-grey Auth0 - NodeJS
-      a( href="/").w3-bar-item.w3-button Home
+      a(href="/").w3-bar-item.w3-button Home
       if loggedIn
-        a( href="/user" ).w3-bar-item.w3-button Profile
-        a( id="qsLogoutBtn" href="/logout").w3-bar-item.w3-button Logout
+        a(href="/user" ).w3-bar-item.w3-button Profile
+        a(id="qsLogoutBtn" href="/logout").w3-bar-item.w3-button Logout
       else
-        a( id="qsLoginBtn" href="/login" ).w3-bar-item.w3-button Login
+        a(id="qsLoginBtn" href="/login").w3-bar-item.w3-button Login
     block content
