@@ -6,43 +6,15 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const dotenv = require('dotenv');
 const passport = require('passport');
-const Auth0Strategy = require('passport-auth0');
 const flash = require('connect-flash');
 const http = require('http');
-const userInViews = require('./lib/middleware/userInViews');
 
 dotenv.load();
 
-const routes = require('./routes');
+const userInViews = require('./lib/middleware/userInViews');
+const home = require('./routes/home');
+const routes = require('./routes/auth');
 const user = require('./routes/user');
-
-// This will configure Passport to use Auth0
-const strategy = new Auth0Strategy(
-  {
-    domain: process.env.AUTH0_DOMAIN,
-    clientID: process.env.AUTH0_CLIENT_ID,
-    clientSecret: process.env.AUTH0_CLIENT_SECRET,
-    callbackURL:
-      process.env.AUTH0_CALLBACK_URL || 'http://localhost:3000/callback'
-  },
-  function(accessToken, refreshToken, extraParams, profile, done) {
-    // accessToken is the token to call Auth0 API (not needed in the most cases)
-    // extraParams.id_token has the JSON Web Token
-    // profile has all the information from the user
-    return done(null, profile);
-  }
-);
-
-passport.use(strategy);
-
-// you can use this section to keep a smaller payload
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-
-passport.deserializeUser(function(user, done) {
-  done(null, user);
-});
 
 const app = express();
 
@@ -82,7 +54,8 @@ app.use(function(req, res, next) {
 });
 
 app.use('/', routes);
-app.use('/user', user);
+app.use('/', home);
+app.use('/', user);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
