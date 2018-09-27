@@ -3,8 +3,18 @@ extends layout
 block content
   br
   .w3-container
-    .w3-card-4.w3-center(style="padding: 15px;")
-      img(src=user.picture)
-      p Welcome #{user.nickname}
-      h2 User Profile
-      pre #{userProfile}
+    .w3-card-4
+      header
+        h1 auth0-passport
+      p This is the content of <code>req.user</code>.
+      p Note: <code>_raw</code> and <code>_json</code> properties have been ommited.
+      pre
+        code #{passportProfile}
+
+    .w3-card-4
+      header
+        h1 Auth0's /userinfo response
+      p This is the auth0 response for the request to <code>/userinfo</code>
+      p Note: You can access this from `req.user._json`.
+      pre
+        code #{auth0UserInfo}

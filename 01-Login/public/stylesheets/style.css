@@ -2,3 +2,17 @@
     color: #337ab7;
     text-decoration: none;
 }
+
+pre {
+    text-align: left;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #343f5f;
+    color: #fdfeff;
+    overflow: scroll;
+    border: 1px #929090 solid;
+    padding: 15px
+}
+
+.w3-card-4 {
+    padding: 15px;
+}
