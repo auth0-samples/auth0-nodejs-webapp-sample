@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -9,11 +8,12 @@ const dotenv = require('dotenv');
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 const flash = require('connect-flash');
+const http = require('http');
 const userInViews = require('./lib/middleware/userInViews');
 
 dotenv.load();
 
-const routes = require('./routes/index');
+const routes = require('./routes');
 const user = require('./routes/user');
 
 // This will configure Passport to use Auth0
@@ -115,4 +115,8 @@ app.use(function(err, req, res, next) {
   });
 });
 
-module.exports = app;
+const port = process.env.PORT || 3000;
+
+http.createServer(app).listen(port, function() {
+  console.log(`listening on http://localhost:${port}`);
+})
