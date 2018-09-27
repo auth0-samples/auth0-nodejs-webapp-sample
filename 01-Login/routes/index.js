@@ -8,9 +8,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login', passport.authenticate('auth0', {
-  scope: 'openid email profile'}),
-  function(req, res) {
-    res.redirect("/");
+  scope: 'openid email profile'
+}), function(req, res) {
+  res.redirect("/");
 });
 
 router.get('/logout', function(req, res) {
@@ -23,7 +23,9 @@ router.get('/callback',
     failureRedirect: '/failure'
   }),
   function(req, res) {
-    res.redirect(req.session.returnTo || '/user');
+    const returnTo = req.session.returnTo;
+    delete req.session.returnTo;
+    res.redirect(returnTo || '/');
   }
 );
 

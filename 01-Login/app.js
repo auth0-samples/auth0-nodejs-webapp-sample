@@ -9,6 +9,7 @@ const dotenv = require('dotenv');
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 const flash = require('connect-flash');
+const userInViews = require('./lib/middleware/userInViews');
 
 dotenv.load();
 
@@ -67,6 +68,7 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(flash());
+app.use(userInViews());
 
 // Handle auth failure error messages
 app.use(function(req, res, next) {
@@ -77,15 +79,6 @@ app.use(function(req, res, next) {
    req.flash("error_description", req.query.error_description);
  }
  next();
-});
-
-// Check logged in
-app.use(function(req, res, next) {
-  res.locals.loggedIn = false;
-  if (req.session.passport && typeof req.session.passport.user !== 'undefined') {
-    res.locals.loggedIn = true;
-  }
-  next();
 });
 
 app.use('/', routes);
