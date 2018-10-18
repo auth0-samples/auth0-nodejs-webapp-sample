@@ -4,14 +4,13 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='https://www.w3schools.com/w3css/4/w3.css')
-    script(src="https://cdn.auth0.com/js/auth0/8.7/auth0.min.js")
   body
     nav.w3-bar.w3-border.w3-light-grey( role="navigation" )
       .w3-bar-item.w3-text-grey Auth0 - NodeJS
       a(href="/").w3-bar-item.w3-button Home
-      if loggedIn
+      if locals.user
         a(href="/user" ).w3-bar-item.w3-button Profile
-        a(id="qsLogoutBtn" href="/logout").w3-bar-item.w3-button Logout
+        a(id="qsLogoutBtn" href="/logout").w3-bar-item.w3-button Log Out
       else
-        a(id="qsLoginBtn" href="/login").w3-bar-item.w3-button Login
+        a(id="qsLoginBtn" href="/login").w3-bar-item.w3-button Log In
     block content
