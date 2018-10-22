@@ -55,11 +55,11 @@ var sess = {
   cookie: {},
   resave: false,
   saveUninitialized: true
- };
+};
  
- if (app.get('env') === 'production') {
+if (app.get('env') === 'production') {
   sess.cookie.secure = true; // serve secure cookies, requires https
- }
+}
  
 app.use(session(sess));
 app.use(passport.initialize());
@@ -70,13 +70,13 @@ app.use(flash());
 
 // Handle auth failure error messages
 app.use(function(req, res, next) {
- if (req && req.query && req.query.error) {
-   req.flash("error", req.query.error);
- }
- if (req && req.query && req.query.error_description) {
-   req.flash("error_description", req.query.error_description);
- }
- next();
+  if (req && req.query && req.query.error) {
+    req.flash("error", req.query.error);
+  }
+  if (req && req.query && req.query.error_description) {
+    req.flash("error_description", req.query.error_description);
+  }
+  next();
 });
 
 app.use(userInViews());
