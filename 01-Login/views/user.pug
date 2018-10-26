@@ -1,10 +1,11 @@
 extends layout
 
 block content
-  br
-  .w3-container
-    .w3-card-4.w3-center(style="padding: 15px;")
-      img(src=user.picture)
-      p Welcome #{user.nickname}
-      h2 User Profile
-      pre #{userProfile}
+  .w3-card-4
+    h1 Welcome #{user.nickname}
+    img(src=user.picture)
+    h2 User profile
+    p This is the content of <code>req.user</code>.
+    p Note: <code>_raw</code> and <code>_json</code> properties have been ommited.
+    pre
+      code #{userProfile}
