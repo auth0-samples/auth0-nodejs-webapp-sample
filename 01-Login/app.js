@@ -15,7 +15,7 @@ var usersRouter = require('./routes/users');
 dotenv.load();
 
 // Configure Passport to use Auth0
-const strategy = new Auth0Strategy(
+var strategy = new Auth0Strategy(
   {
     domain: process.env.AUTH0_DOMAIN,
     clientID: process.env.AUTH0_CLIENT_ID,
@@ -50,6 +50,8 @@ app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(cookieParser());
+
+// config express-session
 var sess = {
   secret: 'CHANGE THIS SECRET',
   cookie: {},
@@ -62,6 +64,7 @@ if (app.get('env') === 'production') {
 }
 
 app.use(session(sess));
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));

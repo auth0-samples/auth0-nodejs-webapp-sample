@@ -9,5 +9,4 @@ module.exports = function () {
     res.locals.user = req.user;
     next();
   };
-}
-;
+};
