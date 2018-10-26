@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var Auth0Strategy = require('passport-auth0');
 var passport = require('passport');
 
 // Perform the login, after login Auth0 will redirect to callback
