@@ -1,6 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+var dotenv = require('dotenv');
+var util = require('util');
+var url = require('url');
+var querystring = require('querystring');
+
+dotenv.config();
 
 // Perform the login, after login Auth0 will redirect to callback
 router.get('/login', passport.authenticate('auth0', {
@@ -26,7 +32,23 @@ router.get('/callback', function (req, res, next) {
 // Perform session logout and redirect to homepage
 router.get('/logout', (req, res) => {
   req.logout();
-  res.redirect('/');
+
+  var returnTo = util.format(
+    '%s://%s:%s',
+    req.protocol,
+    req.hostname,
+    req.connection.localPort
+  );
+  var logoutURL = new URL(
+    util.format('https://%s/logout', process.env.AUTH0_DOMAIN)
+  );
+  var queryString = querystring.stringify({
+    client_id: process.env.AUTH0_CLIENT_ID,
+    returnTo: returnTo
+  });
+  logoutURL.search = queryString;
+
+  res.redirect(logoutURL);
 });
 
 module.exports = router;
