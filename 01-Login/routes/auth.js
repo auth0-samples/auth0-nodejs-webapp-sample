@@ -33,20 +33,30 @@ router.get('/callback', function (req, res, next) {
 router.get('/logout', (req, res) => {
   req.logout();
 
-  var returnTo = util.format(
-    '%s://%s:%s',
-    req.protocol,
-    req.hostname,
-    req.connection.localPort
-  );
+  var port = req.connection.localPort;
+  if (port === undefined || port === 80) {
+    var returnTo = util.format(
+      '%s://%s',
+      req.protocol,
+      req.hostname,
+    );
+  } else {
+    var returnTo = util.format(
+      '%s://%s:%s',
+      req.protocol,
+      req.hostname,
+      port
+    );
+  }
+
   var logoutURL = new URL(
     util.format('https://%s/logout', process.env.AUTH0_DOMAIN)
   );
-  var queryString = querystring.stringify({
+  var searchString = querystring.stringify({
     client_id: process.env.AUTH0_CLIENT_ID,
     returnTo: returnTo
   });
-  logoutURL.search = queryString;
+  logoutURL.search = searchString;
 
   res.redirect(logoutURL);
 });
