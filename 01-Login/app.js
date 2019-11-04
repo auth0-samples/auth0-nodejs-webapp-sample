@@ -60,6 +60,12 @@ var sess = {
 };
 
 if (app.get('env') === 'production') {
+  // Trust first proxy, to prevent "Unable to verify authorization request state."
+  // errors with passport-auth0.
+  // Ref: https://github.com/auth0/passport-auth0/issues/70#issuecomment-480771614
+  // Ref: https://www.npmjs.com/package/express-session#cookiesecure
+  app.set('trust proxy', 1);
+  
   sess.cookie.secure = true; // serve secure cookies, requires https
 }
 
