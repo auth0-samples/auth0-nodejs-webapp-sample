@@ -40,7 +40,7 @@ router.get('/logout', (req, res) => {
   }
 
   var logoutURL = new url.URL(
-    util.format('https://%s/v2/logout', process.env.AUTH0_DOMAIN);
+    util.format('https://%s/v2/logout', process.env.AUTH0_DOMAIN)
   );
   var searchString = querystring.stringify({
     client_id: process.env.AUTH0_CLIENT_ID,
