@@ -11,7 +11,7 @@
     "debug": "~4.1.1",
     "dotenv": "^8.2.0",
     "express": "~4.17.1",
-    "express-session": "^1.15.6",
+    "express-session": "^1.17.0",
     "http-errors": "~1.7.3",
     "morgan": "~1.9.0",
     "passport": "^0.4.0",
