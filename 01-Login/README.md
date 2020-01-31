@@ -15,6 +15,8 @@ Rename `.env.example` to `.env` and replace the values for `AUTH0_CLIENT_ID`, `A
 cp .env.example .env
 ```
 
+If you're using a hosting provider that uses a proxy in front of Node.js, comment in the `trust proxy` configuration in [app.js](https://github.com/auth0-samples/auth0-nodejs-webapp-sample/blob/812bb41fa655a1178f6a33ba54b0aee2397b1917/01-Login/app.js#L63-L70). This is a [`express-session` configuration setting](https://www.npmjs.com/package/express-session#cookiesecure) that allows for trusting this first proxy.
+
 Run the app.
 
 ```bash
