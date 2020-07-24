@@ -33,12 +33,16 @@ router.get('/callback', function (req, res, next) {
 router.get('/logout', (req, res) => {
   req.logout();
 
-  var returnTo = req.protocol + '://' + req.hostname;
-  var port = req.connection.localPort;
-  if (port !== undefined && port !== 80 && port !== 443) {
-    returnTo += ':' + port;
+  // Define the env var if the app runs behind the reverse proxy
+  var returnTo = process.env.AUTH0_LOGOUT_URL;
+  if (!returnTo) {
+    returnTo = req.protocol + '://' + req.hostname;
+    var port = req.connection.localPort;
+    if (port !== undefined && port !== 80 && port !== 443) {
+      returnTo += ':' + port;
+    }
   }
-
+  
   var logoutURL = new url.URL(
     util.format('https://%s/v2/logout', process.env.AUTH0_DOMAIN)
   );
