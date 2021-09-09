@@ -38,6 +38,9 @@ router.get('/logout', (req, res) => {
   if (port !== undefined && port !== 80 && port !== 443) {
     returnTo += ':' + port;
   }
+  
+  // samholford: Override above generation of logout callback because it's trying to go to http and port 3000
+  returnTo = 'https://' + req.hostname;
 
   var logoutURL = new url.URL(
     util.format('https://%s/v2/logout', process.env.AUTH0_DOMAIN)
