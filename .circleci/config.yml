@@ -4,6 +4,9 @@ defaults: &defaults
       - attach_workspace:
           at: ~/
       - run:
+          name: Version
+          command: lsb_release -a
+      - run:
           name: Replace Auth0 test credentials
           command: |
             mv $AUTH0_CFG.example $AUTH0_CFG
