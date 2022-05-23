@@ -14,7 +14,7 @@
     "express-session": "^1.17.3",
     "http-errors": "~2.0.0",
     "morgan": "~1.10.0",
-    "passport": "^0.5.3",
+    "passport": "^0.6.0",
     "passport-auth0": "^1.4.2",
     "pug": "^3.0.2"
   }
