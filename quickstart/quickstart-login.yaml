@@ -1,0 +1,189 @@
+appType: "m2m"
+technology: "m2m"
+technologyLabel: "Machine-to-Machine"
+defaultEnvFileName: &defaultEnvFileName ".env.local"
+
+inputs:
+  auth0Domain:
+  auth0ClientId:
+  auth0ClientSecret:
+  auth0Audience:
+  grantType:
+    default: "client_credentials"
+  selectedApi:
+  apiEndpoint:
+  accessToken:
+
+placeholders:
+  "%AUTH0_DOMAIN%":
+    inputKey: "auth0Domain"
+  "%AUTH0_CLIENT_ID%":
+    inputKey: "auth0ClientId"
+  "%AUTH0_CLIENT_SECRET%":
+    inputKey: "auth0ClientSecret"
+  "%AUTH0_AUDIENCE%":
+    inputKey: "auth0Audience"
+  "%AUTH0_GRANT_TYPE%":
+    inputKey: "grantType"
+  "%SELECTED_API%":
+    inputKey: "selectedApi"
+  "%API_ENDPOINT%":
+    inputKey: "apiEndpoint"
+  "%ACCESS_TOKEN%":
+    inputKey: "accessToken"
+
+snippets:
+  env: &env
+    fileName: *defaultEnvFileName
+    content: |
+      AUTH0_DOMAIN=%AUTH0_DOMAIN%
+      AUTH0_CLIENT_ID=%AUTH0_CLIENT_ID%
+      AUTH0_CLIENT_SECRET=%AUTH0_CLIENT_SECRET%
+      AUDIENCE=%AUTH0_AUDIENCE%
+      AUTH0_GRANT_TYPE=%AUTH0_GRANT_TYPE%
+    language: "bash"
+  access-token-csharp: &accessTokenCsharp
+    source: "quickstart/snippets/csharp-access-token.cs"
+    language: "c#"
+  access-api-csharp: &accessApiCsharp
+    source: "quickstart/snippets/csharp-access-api.cs"
+    language: "c#"
+  access-token-go: &accessTokenGo
+    source: "quickstart/snippets/go-access-token.go"
+    language: "go"
+  access-api-go: &accessApiGo
+    source: "quickstart/snippets/go-access-api.go"
+    language: "go"
+  access-token-java: &accessTokenJava
+    source: "quickstart/snippets/java-access-token.java"
+    language: "java"
+  access-api-java: &accessApiJava
+    source: "quickstart/snippets/java-access-api.java"
+    language: "java"
+  access-token-node: &accessTokenNode
+    source: "quickstart/snippets/node-access-token.js"
+    language: "javascript"
+  access-api-node: &accessApiNode
+    source: "quickstart/snippets/node-access-api.js"
+    language: "javascript"
+  access-token-php: &accessTokenPhp
+    source: "quickstart/snippets/php-access-token.php"
+    language: "php"
+  access-api-php: &accessApiPhp
+    source: "quickstart/snippets/php-access-api.php"
+    language: "php"
+  access-token-python: &accessTokenPython
+    source: "quickstart/snippets/python-access-token.py"
+    language: "python"
+  access-api-python: &accessApiPython
+    source: "quickstart/snippets/python-access-api.py"
+    language: "python"
+  access-token-ruby: &accessTokenRuby
+    source: "quickstart/snippets/ruby-access-token.rb"
+    language: "ruby"
+  access-api-ruby: &accessApiRuby
+    source: "quickstart/snippets/ruby-access-api.rb"
+    language: "ruby"
+
+steps:
+ - title: "Configure environment variables"
+   contentBlocks:
+      - type: markdown
+        source: "quickstart/markdown/env-config.md"
+      - type: snippet
+        <<: *env
+ - title: "Obtaining an Access Token by Calling the Token Endpoint"
+   contentBlocks:
+     - type: markdown
+       source: "quickstart/markdown/obtain-access-token.md"
+ - title: "Use the API token to Access your Protected API Endpoint"
+   contentBlocks:
+     - type: markdown
+       source: "quickstart/markdown/access-api.md"
+
+csharp:
+ - title: "Obtaining an Access Token by Calling the Token Endpoint"
+   contentBlocks:
+     - type: snippet
+       <<: *accessTokenCsharp
+ - title: "Use the API token to Access your Protected API Endpoint"
+   contentBlocks:
+     - type: snippet
+       <<: *accessApiCsharp
+
+go:
+ - title: "Obtaining an Access Token by Calling the Token Endpoint"
+   contentBlocks:
+     - type: snippet
+       <<: *accessTokenGo
+ - title: "Use the API token to Access your Protected API Endpoint"
+   contentBlocks:
+     - type: snippet
+       <<: *accessApiGo
+
+java:
+ - title: "Obtaining an Access Token by Calling the Token Endpoint"
+   contentBlocks:
+     - type: snippet
+       <<: *accessTokenJava
+ - title: "Use the API token to Access your Protected API Endpoint"
+   contentBlocks:
+     - type: snippet
+       <<: *accessApiJava
+
+nodejs:
+ - title: "Obtaining an Access Token by Calling the Token Endpoint"
+   contentBlocks:
+     - type: snippet
+       <<: *accessTokenNode
+ - title: "Use the API token to Access your Protected API Endpoint"
+   contentBlocks:
+     - type: snippet
+       <<: *accessApiNode
+
+php:
+ - title: "Obtaining an Access Token by Calling the Token Endpoint"
+   contentBlocks:
+     - type: snippet
+       <<: *accessTokenPhp
+ - title: "Use the API token to Access your Protected API Endpoint"
+   contentBlocks:
+     - type: snippet
+       <<: *accessApiPhp
+
+python:
+ - title: "Obtaining an Access Token by Calling the Token Endpoint"
+   contentBlocks:
+     - type: snippet
+       <<: *accessTokenPython
+ - title: "Use the API token to Access your Protected API Endpoint"
+   contentBlocks:
+     - type: snippet
+       <<: *accessApiPython
+
+ruby:
+ - title: "Obtaining an Access Token by Calling the Token Endpoint"
+   contentBlocks:
+     - type: snippet
+       <<: *accessTokenRuby
+ - title: "Use the API token to Access your Protected API Endpoint"
+   contentBlocks:
+     - type: snippet
+       <<: *accessApiRuby
+
+# We shouldn't do it this way, it might be its own section ("tryItOut")
+tryOutStep: &tryOutStep
+  - title: "Try it out"
+    contentBlocks:
+      - type: markdown
+        source: "quickstart/markdown/try-steps.md"
+
+nextSteps:
+  links:
+    - label: "Self-Service Machine-to-Machine"
+      url: "https://auth0.com/docs/get-started/onboarding/self-service-m2m"
+    - label: "Using Machine to Machine (M2M) Authorization"
+      url: "https://auth0.com/blog/using-m2m-authorization/"
+
+# Used by the CLI to generate the .env file
+envSnippet: *env
