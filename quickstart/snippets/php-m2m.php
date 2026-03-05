@@ -13,7 +13,7 @@ curl_setopt_array($curl, array(
     "client_id" => "%AUTH0_CLIENT_ID%",
     "client_secret" => getenv("AUTH0_CLIENT_SECRET"),
     "audience" => "%AUTH0_AUDIENCE%",
-    "grant_type" => "%AUTH0_GRANT_TYPE%"
+    "grant_type" => "client_credentials"
   )),
   CURLOPT_HTTPHEADER => array(
     "content-type: application/json"

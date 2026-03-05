@@ -8,8 +8,6 @@ inputs:
   auth0ClientId:
   auth0ClientSecret:
   auth0Audience:
-  grantType:
-    default: "client_credentials"
   selectedApi:
   apiEndpoint:
   accessToken:
@@ -23,8 +21,6 @@ placeholders:
     inputKey: "auth0ClientSecret"
   "%AUTH0_AUDIENCE%":
     inputKey: "auth0Audience"
-  "%AUTH0_GRANT_TYPE%":
-    inputKey: "grantType"
   "%SELECTED_API%":
     inputKey: "selectedApi"
   "%API_ENDPOINT%":
@@ -40,49 +36,33 @@ snippets:
       AUTH0_CLIENT_ID=%AUTH0_CLIENT_ID%
       AUTH0_CLIENT_SECRET=%AUTH0_CLIENT_SECRET%
       AUDIENCE=%AUTH0_AUDIENCE%
-      AUTH0_GRANT_TYPE=%AUTH0_GRANT_TYPE%
     language: "bash"
-  access-token-csharp: &accessTokenCsharp
-    source: "quickstart/snippets/csharp-access-token.cs"
-    language: "c#"
-  access-api-csharp: &accessApiCsharp
-    source: "quickstart/snippets/csharp-access-api.cs"
-    language: "c#"
-  access-token-go: &accessTokenGo
-    source: "quickstart/snippets/go-access-token.go"
+  curlGetToken: &curlGetToken
+    source: "quickstart/snippets/curl-get-token.sh"
+    language: "bash"
+  curlCallApi: &curlCallApi
+    source: "quickstart/snippets/curl-call-api.sh"
+    language: "bash"
+  csharp: &accessTokenCsharp
+    source: "quickstart/snippets/csharp-m2m.cs"
+    language: "csharp"
+  go: &accessTokenGo
+    source: "quickstart/snippets/go-m2m.go"
     language: "go"
-  access-api-go: &accessApiGo
-    source: "quickstart/snippets/go-access-api.go"
-    language: "go"
-  access-token-java: &accessTokenJava
-    source: "quickstart/snippets/java-access-token.java"
+  java: &accessTokenJava
+    source: "quickstart/snippets/java-m2m.java"
     language: "java"
-  access-api-java: &accessApiJava
-    source: "quickstart/snippets/java-access-api.java"
-    language: "java"
-  access-token-node: &accessTokenNode
-    source: "quickstart/snippets/node-access-token.js"
-    language: "javascript"
-  access-api-node: &accessApiNode
-    source: "quickstart/snippets/node-access-api.js"
-    language: "javascript"
-  access-token-php: &accessTokenPhp
-    source: "quickstart/snippets/php-access-token.php"
+  node: &accessTokenNode
+    source: "quickstart/snippets/node-m2m.js"
+    language: "nodejs"
+  php: &accessTokenPhp
+    source: "quickstart/snippets/php-m2m.php"
     language: "php"
-  access-api-php: &accessApiPhp
-    source: "quickstart/snippets/php-access-api.php"
-    language: "php"
-  access-token-python: &accessTokenPython
-    source: "quickstart/snippets/python-access-token.py"
+  python: &accessTokenPython
+    source: "quickstart/snippets/python-m2m.py"
     language: "python"
-  access-api-python: &accessApiPython
-    source: "quickstart/snippets/python-access-api.py"
-    language: "python"
-  access-token-ruby: &accessTokenRuby
-    source: "quickstart/snippets/ruby-access-token.rb"
-    language: "ruby"
-  access-api-ruby: &accessApiRuby
-    source: "quickstart/snippets/ruby-access-api.rb"
+  ruby: &accessTokenRuby
+    source: "quickstart/snippets/ruby-m2m.rb"
     language: "ruby"
 
 steps:
@@ -92,84 +72,35 @@ steps:
         source: "quickstart/markdown/env-config.md"
       - type: snippet
         <<: *env
- - title: "Obtaining an Access Token by Calling the Token Endpoint"
+ - title: "Obtaining an Access Token & Calling your API"
    contentBlocks:
      - type: markdown
        source: "quickstart/markdown/obtain-access-token.md"
- - title: "Use the API token to Access your Protected API Endpoint"
-   contentBlocks:
      - type: markdown
        source: "quickstart/markdown/access-api.md"
+     - type: snippet
+       sources:
+         - <<: *accessTokenCsharp
+         - <<: *accessTokenGo
+         - <<: *accessTokenJava
+         - <<: *accessTokenNode
+         - <<: *accessTokenPhp
+         - <<: *accessTokenPython
+         - <<: *accessTokenRuby
 
-csharp:
- - title: "Obtaining an Access Token by Calling the Token Endpoint"
-   contentBlocks:
-     - type: snippet
-       <<: *accessTokenCsharp
- - title: "Use the API token to Access your Protected API Endpoint"
-   contentBlocks:
-     - type: snippet
-       <<: *accessApiCsharp
-
-go:
- - title: "Obtaining an Access Token by Calling the Token Endpoint"
-   contentBlocks:
-     - type: snippet
-       <<: *accessTokenGo
- - title: "Use the API token to Access your Protected API Endpoint"
-   contentBlocks:
-     - type: snippet
-       <<: *accessApiGo
-
-java:
- - title: "Obtaining an Access Token by Calling the Token Endpoint"
-   contentBlocks:
-     - type: snippet
-       <<: *accessTokenJava
- - title: "Use the API token to Access your Protected API Endpoint"
-   contentBlocks:
-     - type: snippet
-       <<: *accessApiJava
-
-nodejs:
- - title: "Obtaining an Access Token by Calling the Token Endpoint"
-   contentBlocks:
-     - type: snippet
-       <<: *accessTokenNode
- - title: "Use the API token to Access your Protected API Endpoint"
-   contentBlocks:
-     - type: snippet
-       <<: *accessApiNode
-
-php:
- - title: "Obtaining an Access Token by Calling the Token Endpoint"
-   contentBlocks:
-     - type: snippet
-       <<: *accessTokenPhp
- - title: "Use the API token to Access your Protected API Endpoint"
-   contentBlocks:
-     - type: snippet
-       <<: *accessApiPhp
-
-python:
- - title: "Obtaining an Access Token by Calling the Token Endpoint"
-   contentBlocks:
-     - type: snippet
-       <<: *accessTokenPython
- - title: "Use the API token to Access your Protected API Endpoint"
-   contentBlocks:
-     - type: snippet
-       <<: *accessApiPython
-
-ruby:
- - title: "Obtaining an Access Token by Calling the Token Endpoint"
-   contentBlocks:
-     - type: snippet
-       <<: *accessTokenRuby
- - title: "Use the API token to Access your Protected API Endpoint"
-   contentBlocks:
-     - type: snippet
-       <<: *accessApiRuby
+curl:
+  - title: "Obtaining an Access Token"
+    contentBlocks:
+      - type: markdown
+        source: "quickstart/markdown/obtain-access-token.md"
+      - type: snippet
+        <<: *curlGetToken
+  - title: "Calling your API"
+    contentBlocks:
+      - type: markdown
+        source: "quickstart/markdown/access-api.md"
+      - type: snippet
+        <<: *curlCallApi
 
 # We shouldn't do it this way, it might be its own section ("tryItOut")
 tryOutStep: &tryOutStep

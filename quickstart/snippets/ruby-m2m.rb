@@ -15,7 +15,7 @@ request.body = {
   client_id: "%AUTH0_CLIENT_ID%",
   client_secret: ENV['AUTH0_CLIENT_SECRET'],
   audience: "%AUTH0_AUDIENCE%",
-  grant_type: "%AUTH0_GRANT_TYPE%"
+  grant_type: "client_credentials"
 }.to_json
 
 response = http.request(request)

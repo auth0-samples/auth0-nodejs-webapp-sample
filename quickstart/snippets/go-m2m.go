@@ -18,7 +18,7 @@ func main() {
     "client_id":     "%AUTH0_CLIENT_ID%",
     "client_secret": os.Getenv("AUTH0_CLIENT_SECRET"),
     "audience":      "%AUTH0_AUDIENCE%",
-    "grant_type":    "%AUTH0_GRANT_TYPE%",
+    "grant_type":    "client_credentials",
   }
   payloadBytes, _ := json.Marshal(payloadData)
   payload := strings.NewReader(string(payloadBytes))
