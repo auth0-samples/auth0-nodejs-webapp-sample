@@ -10,7 +10,6 @@ inputs:
   auth0Audience:
   selectedApi:
   apiEndpoint:
-  accessToken:
 
 placeholders:
   "%AUTH0_DOMAIN%":
@@ -25,8 +24,6 @@ placeholders:
     inputKey: "selectedApi"
   "%API_ENDPOINT%":
     inputKey: "apiEndpoint"
-  "%ACCESS_TOKEN%":
-    inputKey: "accessToken"
 
 snippets:
   env: &env
