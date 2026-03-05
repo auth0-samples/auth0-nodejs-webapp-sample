@@ -99,13 +99,6 @@ curl:
       - type: snippet
         <<: *curlCallApi
 
-# We shouldn't do it this way, it might be its own section ("tryItOut")
-tryOutStep: &tryOutStep
-  - title: "Try it out"
-    contentBlocks:
-      - type: markdown
-        source: "quickstart/markdown/try-steps.md"
-
 nextSteps:
   links:
     - label: "Self-Service Machine-to-Machine"
