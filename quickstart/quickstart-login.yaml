@@ -34,8 +34,8 @@ snippets:
       AUTH0_CLIENT_SECRET=%AUTH0_CLIENT_SECRET%
       AUTH0_AUDIENCE=%AUTH0_AUDIENCE%
     language: "bash"
-  curl: &curl
-    source: "quickstart/snippets/curl.sh"
+  m2mCurl: &m2mCurl
+    source: "quickstart/snippets/curl-m2m.sh"
     language: "bash"
   curlGetToken: &curlGetToken
     source: "quickstart/snippets/curl-get-token.sh"
@@ -80,7 +80,7 @@ steps:
        source: "quickstart/markdown/access-api.md"
      - type: snippet
        sources:
-         - <<: *curl
+         - <<: *m2mCurl
          - <<: *m2mCsharp
          - <<: *m2mGo
          - <<: *m2mJava
