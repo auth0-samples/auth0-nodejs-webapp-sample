@@ -32,7 +32,10 @@ snippets:
       AUTH0_DOMAIN=%AUTH0_DOMAIN%
       AUTH0_CLIENT_ID=%AUTH0_CLIENT_ID%
       AUTH0_CLIENT_SECRET=%AUTH0_CLIENT_SECRET%
-      AUDIENCE=%AUTH0_AUDIENCE%
+      AUTH0_AUDIENCE=%AUTH0_AUDIENCE%
+    language: "bash"
+  curl: &curl
+    source: "quickstart/snippets/curl.sh"
     language: "bash"
   curlGetToken: &curlGetToken
     source: "quickstart/snippets/curl-get-token.sh"
@@ -40,25 +43,25 @@ snippets:
   curlCallApi: &curlCallApi
     source: "quickstart/snippets/curl-call-api.sh"
     language: "bash"
-  csharp: &accessTokenCsharp
+  csharp: &m2mCsharp
     source: "quickstart/snippets/csharp-m2m.cs"
     language: "csharp"
-  go: &accessTokenGo
+  go: &m2mGo
     source: "quickstart/snippets/go-m2m.go"
     language: "go"
-  java: &accessTokenJava
+  java: &m2mJava
     source: "quickstart/snippets/java-m2m.java"
     language: "java"
-  node: &accessTokenNode
+  node: &m2mNode
     source: "quickstart/snippets/node-m2m.js"
     language: "nodejs"
-  php: &accessTokenPhp
+  php: &m2mPhp
     source: "quickstart/snippets/php-m2m.php"
     language: "php"
-  python: &accessTokenPython
+  python: &m2mPython
     source: "quickstart/snippets/python-m2m.py"
     language: "python"
-  ruby: &accessTokenRuby
+  ruby: &m2mRuby
     source: "quickstart/snippets/ruby-m2m.rb"
     language: "ruby"
 
@@ -77,13 +80,14 @@ steps:
        source: "quickstart/markdown/access-api.md"
      - type: snippet
        sources:
-         - <<: *accessTokenCsharp
-         - <<: *accessTokenGo
-         - <<: *accessTokenJava
-         - <<: *accessTokenNode
-         - <<: *accessTokenPhp
-         - <<: *accessTokenPython
-         - <<: *accessTokenRuby
+         - <<: *curl
+         - <<: *m2mCsharp
+         - <<: *m2mGo
+         - <<: *m2mJava
+         - <<: *m2mNode
+         - <<: *m2mPhp
+         - <<: *m2mPython
+         - <<: *m2mRuby
 
 curl:
   - title: "Obtaining an Access Token"
